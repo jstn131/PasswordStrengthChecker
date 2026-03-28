@@ -1,20 +1,78 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Password Strength Checker</title>
-  </head>
-  <body>
-    <!-- Print out test results-->
-    <h1>Password Strength Results</h1>
-    <!-- Using Jinja2 Template to display python variables-->
-    <p>Password: {{ password }}</p>
-    <p>Strength: {{ strength_score }}</p>
-    <p>Color: {{ color }}</p>
-    <ul>
-      {% for key, value in results.items() %}
-      <li>{{ key }}: {{ value }}</li>
-      {% endfor %}
-    </ul>
-    <a href="/">Check another password</a>
-  </body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <span class="eyebrow">// results</span>
+        <h1>Strength Report</h1>
+        <p class="subtitle">Here is how your password performed</p>
+
+        <div class="card">
+
+            <!-- Score bar — width changes based on score out of 6 -->
+            <div class="score-row">
+                <span class="score-label">Score</span>
+                <span class="score-value">{{ strength_score }}/6</span>
+            </div>
+
+            <!-- Bar width is calculated as a percentage of 6 -->
+            {% set bar_class = "weak" %}
+            {% if strength_score >= 5 %}
+                {% set bar_class = "strong" %}
+            {% elif strength_score >= 4 %}
+                {% set bar_class = "secure" %}
+            {% elif strength_score >= 2 %}
+                {% set bar_class = "moderate" %}
+            {% endif %}
+
+            <!-- Issue here? Everything seems to work well but I cannot seem to -->
+            <!-- get this to stop showing an error -->
+            <div class="bar-track">
+                <div class="bar-fill {{ bar_class }}"
+                     style="width: {{ ((strength_score / 6) * 100) | round }}%">
+                    </div>
+            </div>
+
+            <!-- Rating badge -->
+            <span class="rating {{ bar_class }}">{{ strength_label }}</span>
+
+            <div class="divider"></div>
+
+            <!-- Checklist — using Jinja2 to loop through results dictionary -->
+            <!-- Friendly names mapped to dictionary keys -->
+            {% set labels = {
+                "length_8": "At least 8 characters",
+                "length_12": "12+ characters (bonus)",
+                "has_upper": "Uppercase letter",
+                "has_lower": "Lowercase letter",
+                "has_number": "Number included",
+                "has_special": "Special character"
+            } %}
+
+            <div class="checklist">
+                {% for key, value in results.items() %}
+                <div class="check-item {{ 'pass' if value else 'fail' }}">
+                    <span class="check-icon">{{ '✓' if value else '✗' }}</span>
+                    <span>{{ labels[key] }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Password display — masked for security -->
+            <p style="font-family: 'DM Mono', monospace; font-size: 12px;
+                      color: var(--text-muted); letter-spacing: 1px;">
+                Checked: {{ '*' * password|length }}
+            </p>
+
+        </div>
+
+        <!-- Link to go back and check another password -->
+        <a href="/" class="back-link">Check another password</a>
+    </div>
+</body>
 </html>

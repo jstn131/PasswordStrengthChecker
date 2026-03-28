@@ -1,14 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Password Strength Checker</title>
-  </head>
-  <body>
-    <form action = "/results" method = "POST">
-      <label> Enter Password:</label>
-      <!-- Password information, make sure it is required before user is able to submit-->
-      <input type = "text" name = "password" id = "password" placeholder = "eg: password123: " required>
-      <button type = "submit">Check Strength</button>
-    </form>
-  </body>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <span class="eyebrow">// security tool</span>
+        <h1>Password Strength</h1>
+        <p class="subtitle">Analyze how secure your password really is</p>
+
+        <div class="card">
+            <form action="/results" method="POST">
+                <div class="field">
+                    <label>Password</label>
+                    <!-- Password input, name is crucial for Flask to identify it -->
+                    <input type="password" name="password" id="password"
+                           placeholder="Enter your password" required>
+                </div>
+                <button type="submit">Check Strength</button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>

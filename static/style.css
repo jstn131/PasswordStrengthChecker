@@ -1,0 +1,303 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap");
+
+:root {
+  --bg: #1c1c1e;
+  --bg-card: #242426;
+  --bg-input: #1c1c1e;
+  --bg-item: #2a2a2c;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-focus: rgba(255, 255, 255, 0.18);
+  --text-primary: #f0f0f0;
+  --text-secondary: #888;
+  --text-muted: #555;
+  --green: #34c77b;
+  --green-dim: rgba(52, 199, 123, 0.1);
+  --red: #f25c5c;
+  --red-dim: rgba(242, 92, 92, 0.1);
+  --accent: #e8e8e8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  animation: rise 0.4s ease forwards;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Header ---- */
+.eyebrow {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+/* ---- Card ---- */
+.card {
+  background: var(--bg-card);
+  border: 0.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.75rem;
+}
+
+/* ---- Form ---- */
+.field {
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  background: var(--bg-input);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--text-primary);
+  font-family: "DM Mono", monospace;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.04);
+}
+
+input::placeholder {
+  color: var(--text-muted);
+}
+
+button,
+input[type="submit"] {
+  width: 100%;
+  background: var(--accent);
+  color: #1c1c1e;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  transition:
+    opacity 0.2s,
+    transform 0.15s;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+button:active,
+input[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* ---- Score Bar ---- */
+.score-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.score-label {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.score-value {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.bar-track {
+  height: 4px;
+  background: var(--bg-item);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+.bar-fill.weak {
+  background: #f25c5c;
+}
+.bar-fill.moderate {
+  background: #f0a05a;
+}
+.bar-fill.secure {
+  background: #5ab0f0;
+}
+.bar-fill.strong {
+  background: #34c77b;
+}
+
+/* ---- Rating Badge ---- */
+.rating {
+  display: inline-block;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+}
+
+.rating.weak {
+  background: var(--red-dim);
+  color: var(--red);
+}
+.rating.moderate {
+  background: rgba(240, 160, 90, 0.1);
+  color: #f0a05a;
+}
+.rating.secure {
+  background: rgba(90, 176, 240, 0.1);
+  color: #5ab0f0;
+}
+.rating.strong {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+/* ---- Checklist ---- */
+.checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-item);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.check-item.pass {
+  color: var(--green);
+}
+.check-item.fail {
+  color: var(--text-muted);
+}
+
+.check-icon {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  width: 16px;
+  flex-shrink: 0;
+}
+
+.check-item.pass .check-icon {
+  color: var(--green);
+}
+.check-item.fail .check-icon {
+  color: var(--text-muted);
+}
+
+/* ---- Back Link ---- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-top: 1.25rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--text-secondary);
+}
+.back-link::before {
+  content: "←";
+}
+
+/* ---- Divider ---- */
+.divider {
+  height: 0.5px;
+  background: var(--border);
+  margin: 1.25rem 0;
+}
