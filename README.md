@@ -121,7 +121,6 @@ password-strength-checker/
 
 - Strengthened my understanding of **regex** for real-world pattern matching use cases
 - Learned how to use **Python dictionaries** to pass structured data between functions — coming from Java, these are similar to HashMaps
-- Learned why **common password blocklists** are used in real security systems based on NIST guidelines
 - Applied **modular imports** to connect multiple Python files together
 - Practiced **separation of concerns** by keeping core logic and UI in separate files
 - Built a **Flask web application** with multiple routes handling both GET and POST requests
