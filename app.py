@@ -8,7 +8,7 @@ def index():
     return render_template("index.html")
 
 @app.route("/results", methods = ["POST"])
-def results():
+def show_results():
     password = request.form["password"] # Assign password variable to password input from index.html
     # Call check_strength function from password_strength_checker.py and unpack the returned values into variables.
     strength_score, strength_label, color, results = password_strength_checker.check_strength(password) 

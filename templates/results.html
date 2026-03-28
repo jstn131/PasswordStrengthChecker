@@ -8,8 +8,13 @@
     <h1>Password Strength Results</h1>
     <!-- Using Jinja2 Template to display python variables-->
     <p>Password: {{ password }}</p>
-    <p>Strength: {{ strength }}</p>
+    <p>Strength: {{ strength_score }}</p>
     <p>Color: {{ color }}</p>
-    <p>Results: {{ results }}</p>
+    <ul>
+      {% for key, value in results.items() %}
+      <li>{{ key }}: {{ value }}</li>
+      {% endfor %}
+    </ul>
+    <a href="/">Check another password</a>
   </body>
 </html>
