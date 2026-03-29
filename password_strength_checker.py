@@ -1,7 +1,7 @@
 # importing re will be used to check for password requirements.
 # Update: We removed getpass, GUI will handle the password "hide" instead.
 import re
-
+import os
 import random # We will use the random library to randomly select characters for the password.
 
 
@@ -126,3 +126,23 @@ def generatePassword():
     password = ''.join(password_list) # Convert list back to string.
 
     return password
+
+# Saves password into a file orange_banana_peel.txt. Works well for security
+# reasons, since file name is not something obvious. Also, if a user clicks something
+# that activates the function, there is a high chance that they do not have a file 
+# called this, so none of their important files will be overwritten.
+def savePassword(password):
+    # OneDrive moves the Desktop folder — check both locations
+    onedrive_desktop = os.path.join(os.path.expanduser("~"), "OneDrive", "Desktop")
+    regular_desktop = os.path.join(os.path.expanduser("~"), "Desktop")
+    
+    # Use OneDrive Desktop if it exists, otherwise use regular Desktop
+    if os.path.exists(onedrive_desktop):
+        desktop = onedrive_desktop
+    else:
+        desktop = regular_desktop
+        
+    file_path = os.path.join(desktop, "orange_banana_peel.txt")
+    
+    with open(file_path, "a") as f:
+        f.write(f"site: | password: {password}\n")

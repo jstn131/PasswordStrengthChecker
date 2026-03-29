@@ -24,5 +24,11 @@ def genPassword():
     password = password_strength_checker.generatePassword()
     return render_template("generate_password.html", password=password)
 
+@app.route("/save", methods = ["POST"])
+def save():
+    password = request.form["password"] # Get the password from the form in results.html
+    password_strength_checker.savePassword(password) # Call the savePassword function to save the password into a file.
+    return render_template("generate_password.html", password=password) # Render a new page to confirm that the password was saved.
+
 if __name__ == "__main__":
     app.run(debug=True)
